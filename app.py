@@ -8,7 +8,8 @@ app = Flask(__name__)
 
 @app.route("/nba", methods=["POST"])
 def parse_champions():
-    data = request.get_json()
+    print("Received request:", request.data)
+    data = request.get_json(force= True)
     champions_text = data.get("champions", "")
     entries = [entry.strip() for entry in champions_text.split(",") if entry.strip()]
     
